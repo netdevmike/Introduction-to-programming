@@ -1,4 +1,4 @@
-// Fig. 3.8: fig03_08.c
+20// Fig. 3.8: fig03_08.c
 // Class average program with sentinel-controlled iteration
 #include <stdio.h>
 
