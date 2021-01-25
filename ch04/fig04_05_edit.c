@@ -1,27 +1,16 @@
-// Fig. 4.6: fig04_06.c
-// Calculating compound interest
+// Fig. 4.5: fig04_05.c  
+// Summation with for
 #include <stdio.h>
-#include <math.h>  
 
 int main(void)
 {
-   double principal = 1000.0; // starting principal
-   double rate = .05; // annual interest rate
+   unsigned int sum = 0; // initialize sum
 
-   // output table column heads
-   printf("%4s%21s\n", "Year", "Amount on deposit");
+   for (unsigned int number = 2; number <= 100; sum += number, number += 2);
 
-   // calculate amount on deposit for each of ten years
-   for (unsigned int year = 1; year <= 10; ++year) {
+   printf("Sum is %u\n", sum); 
+}
 
-      // calculate new amount for specified year
-      double amount = principal * pow(1.0 + rate, year);
-
-      // output one table row
-      printf("%4u%21.2f\n", year, amount);   
-      // To left justify a value in a field, place a - (minus sign) between the % and the field width.
-   }
-} 
 
 
 
