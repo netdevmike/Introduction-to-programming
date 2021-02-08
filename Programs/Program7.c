@@ -1,37 +1,29 @@
-// Fig. 8.10: fig08_10.c
-// Using functions fgets and putchar
+// Fig. 8.15: fig08_15.c
+// Using functions strcpy and strncpy
 #include <stdio.h>
-#define SIZE 80
-
-void reverse(const char *const sPtr); // prototype
+#include <string.h>
+#define SIZE1 25
+#define SIZE2 15
 
 int main(void)
-{
-   char sentence[SIZE]; // create char array
+{ 
+   char x[] = "Happy Birthday to You"; // initialize char array x
+   char y[SIZE1]; // create char array y
+   char z[SIZE2]; // create char array z
+   
+   // copy contents of x into y
+   printf("%s%s\n%s%s\n", 
+      "The string in array x is: ", x,
+      "The string in array y is: ", strcpy(y, x));
 
-   puts("Enter a line of text:");
+   // copy first 14 characters of x into z. Does not copy null 
+   // character                                                   
+   strncpy(z, x, SIZE2 - 1);                                    
+                                                                   
+   z[SIZE2 - 1] = '\0'; // terminate string in z          
+   printf("The string in array z is: %s\n", z);
+} 
 
-   // use fgets to read line of text
-   fgets(sentence, SIZE, stdin);
-
-   printf("\n%s", "The line printed backward is:");
-   reverse(sentence);
-}
-
-// recursively outputs characters in string in reverse order
-void reverse(const char *const sPtr)
-{
-   // if end of the string
-   if ('\0' == sPtr[0])
-   { // base case
-      return;
-   }
-   else
-   {                     // if not end of the string
-      reverse(&sPtr[1]); // recursion step
-      putchar(sPtr[0]);  // use putchar to display character
-   }
-}
 
 /**************************************************************************
  * (C) Copyright 1992-2015 by Deitel & Associates, Inc. and               *
