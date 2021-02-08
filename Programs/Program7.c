@@ -1,41 +1,72 @@
-// Fig. 8.15: fig08_15.c
-// Using functions strcpy and strncpy
 #include <stdio.h>
 #include <string.h>
-#define SIZE1 25
-#define SIZE2 15
+#define SIZEPTRARR 5
 
-int main(void)
-{ 
-   char x[] = "Happy Birthday to You"; // initialize char array x
-   char y[SIZE1]; // create char array y
-   char z[SIZE2]; // create char array z
-   
-   // copy contents of x into y
-   printf("%s%s\n%s%s\n", 
-      "The string in array x is: ", x,
-      "The string in array y is: ", strcpy(y, x));
+// prototype of the search function
+int search(char *stringArray[], char str[7], int *elemententNo);
+int printArray(char *stringArray[]); // prototype of the printArray function
 
-   // copy first 14 characters of x into z. Does not copy null 
-   // character                                                   
-   strncpy(z, x, SIZE2 - 1);                                    
-                                                                   
-   z[SIZE2 - 1] = '\0'; // terminate string in z          
-   printf("The string in array z is: %s\n", z);
-} 
+// main function
+int main()
+{
 
+   // creating pointer array of strings
+   char *stringArray[] = {"Javascript", "Python", "C", "PHP", "JAVA"};
 
-/**************************************************************************
- * (C) Copyright 1992-2015 by Deitel & Associates, Inc. and               *
- * Pearson Education, Inc. All Rights Reserved.                           *
- *                                                                        *
- * DISCLAIMER: The authors and publisher of this book have used their     *
- * best efforts in preparing the book. These efforts include the          *
- * development, research, and testing of the theories and programs        *
- * to determine their effectiveness. The authors and publisher make       *
- * no warranty of any kind, expressed or implied, with regard to these    *
- * programs or to the documentation contained in these books. The authors *
- * and publisher shall not be liable in any event for incidental or       *
- * consequential damages in connection with, or arising out of, the       *
- * furnishing, performance, or use of these programs.                     *
- *************************************************************************/
+   // function to print stringArray
+   printArray(stringArray);
+
+   // inputting a search string and calling the search function, passing stringArray and the search string
+   int elmntNo;
+   char str[5];
+   printf("Input one of the programming languages to learn more:  ");
+   scanf("%s", str);
+   int n = search(stringArray, str, &elmntNo);
+   // if n==0 given string is present in stringArray
+   // else given string is not present in stringArray
+   if (n == 0)
+   {
+      printf("\n%s is present in stringArray in element %d, having value %s.\n", str, elmntNo, stringArray[elmntNo]);
+   }
+   else
+   {
+      printf("\n%s is not present in stringArray.\n", str);
+   }
+}
+
+// search function, which takes in a pointer array to string and an a string
+// and returns 0 if the string is present in array else return a differnt number
+int search(char *stringArray[], char str[7], int *elemententNo)
+{
+
+   // calculate length of stringArray
+   int i = 0;
+   int n;
+   // iterating over stringArray
+   for (i = 0; i < SIZEPTRARR; i++)
+   {
+      n = strncmp(stringArray[i], str, 5);
+      if (n == 0)
+      {
+         *elemententNo = i;
+         return n; //return 0 and stop search if it is found
+      }            //end if
+   }               //end for
+   return n;       // if string is not found in the stringArray return the non zerror result of the string compare
+} //e
+
+// printArray function, which takes the length of the array and prints each index
+int printArray(char *stringArray[])
+{
+
+   // calculate length of stringArray
+   int i = 0;
+   // iterating over stringArray
+   for (i = 0; i < SIZEPTRARR; i++)
+   {
+      printf("%s  ", stringArray[i]); // print each stringArray string at all indexes
+   }                                  // end for
+   printf("\n");                      // add space
+
+   return 0;
+}
