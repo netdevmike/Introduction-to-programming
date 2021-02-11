@@ -4,14 +4,16 @@
 
 // function main begins program execution
 int main(void)
-{
+{ 
    char z[9]; // define array z
-
+   
    printf("%s", "Enter string: ");
    scanf("%8[aeiou]", z); // search for set of characters
 
    printf("The input was \"%s\"\n", z);
-}
+} 
+
+
 
 /**************************************************************************
  * (C) Copyright 1992-2015 by Deitel & Associates, Inc. and               *

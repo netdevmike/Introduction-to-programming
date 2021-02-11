@@ -6,8 +6,8 @@ int main (void)
     printf("Michael Charara\n");
     printf("3 Facts about myself\n 1. I have a bachelors of science in Biology\n 2. I love to code and excited to learn!\n 3. I am also pursuing a MBA while purusing my BS CS \n");
 
-    // declaring 5 variables
-    int integer1;
+    // declaring 5 variables: Integers will be input from user, sums will be calculated later
+    int integer1; 
     int integer2;
     int integer3;
     int integer4;
@@ -49,7 +49,7 @@ int main (void)
         printf( "The first number entered, %d, is bigger than or the same size as the second number entered, %d \n", integer1, integer2);
     }
 
-    // if statement comparing size of int2 and int3
+    // if statement comparing size of int3 and int4
     if(integer3 < integer4)
     {
         printf( "The third number entered, %d, is less than the fourth number entered, %d \n", integer3, integer4);
@@ -58,7 +58,7 @@ int main (void)
         printf( "The third number entered, %d, is bigger than or the same size as the fourth number entered, %d \n", integer3, integer4);
     }
     
-    // if statement comparing sum1 of int1 and in2 to sum2 of int2 and int3
+    // if statement comparing sum1 of int1 and int2 to sum2 of int3 and int4
     if(sum1 < sum2)
     {
         printf( "sum of the first number entered, %d, and the second number entered, %d, came out to, %d, which is less than the sum of the third number entered, %d, and the fourth number entered, %d, which came out to, %d \n", integer1, integer2, sum1, integer3, integer4, sum2);

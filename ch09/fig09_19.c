@@ -4,7 +4,7 @@
 
 // function main begins program execution
 int main(void)
-{
+{ 
    double a;
    double b;
    double c;
@@ -15,7 +15,8 @@ int main(void)
    printf("\nHere are the numbers entered in plain");
    puts("floating-point notation:");
    printf("%f\n%f\n%f\n", a, b, c);
-}
+} 
+
 
 /**************************************************************************
  * (C) Copyright 1992-2015 by Deitel & Associates, Inc. and               *

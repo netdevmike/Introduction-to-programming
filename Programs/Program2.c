@@ -2,10 +2,10 @@
 
 int main (void) 
 {
-    printf( "%s", "Enter first integer(must be smaller than second number): " );
+    printf( "%s", "Enter first integer(must be smaller than second number): " ); // Prompt user for first input
     unsigned int x; 
     scanf( "%u", &x ); // read value for x from user 
-    printf( "%s", "Enter second integer(must be larger than first number): " );
+    printf( "%s", "Enter second integer(must be larger than first number): " ); // prompt user for second input
     unsigned int y; 
     scanf( "%u", &y ); // read value for y from user 
 
@@ -14,7 +14,7 @@ int main (void)
     int end = y; // ending value for while statement
 
     // loop
-    while (counter <= end)
+    while (counter <= end) // establishing the counter and its peramater for the while loop
     {
         // if else statement to check if counter is even or odd
         if (counter %2){
