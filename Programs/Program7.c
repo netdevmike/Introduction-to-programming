@@ -64,15 +64,11 @@ int main()
          if (n == 0)
          {
             printf("\n%s is present in stringArray in element %d.\n", str, elmntNo);
-            char new[31];
+            char str[10];
             printf("Enter the new name:\n");
-            scanf("%s", new);
+            scanf("%s", str);
 
-            char *(*ptr)[] = &stringArray;
-            (*ptr)[elmntNo] = new;
-
-            //strcat(stringArray[elmntNo], x);
-            // printf("%s\n", new);
+            stringArray[elmntNo] = str;
 
             printArray(stringArray);
          }
