@@ -1,1 +1,1 @@
-   printf("\n");                            // extra space
+main();

@@ -5,33 +5,106 @@
 // prototype of the search function
 int search(char *stringArray[], char str[7], int *elemententNo);
 int printArray(char *stringArray[]); // prototype of the printArray function
+int printInfo(char str[7]);          // prototype of the pintInfo
 
+int input();
+void output(float);
 // main function
 int main()
 {
-
    // creating pointer array of strings
-   char *stringArray[] = {"Javascript", "Python", "C", "PHP", "JAVA"};
-
-   // function to print stringArray
-   printArray(stringArray);
-
-   // inputting a search string and calling the search function, passing stringArray and the search string
-   int elmntNo;
-   char str[5];
-   printf("Input one of the programming languages to learn more:  ");
-   scanf("%s", str);
-   int n = search(stringArray, str, &elmntNo);
-   // if n==0 given string is present in stringArray
-   // else given string is not present in stringArray
-   if (n == 0)
+   char *stringArray[] = {"Go", "Python", "C", "PHP", "JAVA"};
+   int exit = 0;
+   for (exit = 0; exit != 1;)
    {
-      printf("\n%s is present in stringArray in element %d, having value %s.\n", str, elmntNo, stringArray[elmntNo]);
+      float result;
+      int choice, num;
+      printf("Press 1 to print a list of programming languages in the database\n");
+      printf("Press 2 to search for a programming language in the database\n");
+      printf("Press 3 to change the name of a programming language in the database\n");
+      printf("Press 4 to exit the program\n");
+      printf("Enter your choice:\n");
+      choice = input();
+
+      switch (choice)
+      {
+      case 1:
+      {
+         // function to print stringArray
+         printArray(stringArray);
+         break;
+      }
+      case 2:
+      {
+         // inputting a search string and calling the search function, passing stringArray and the search string
+         int elmntNo;
+         char str[10];
+         printf("Search for one of the programming languages in the database\n");
+         scanf("%s", str);
+         int n = search(stringArray, str, &elmntNo);
+         // if n==0 given string is present in stringArray
+         // else given string is not present in stringArray
+         if (n == 0)
+         {
+            printf("\n%s is present in stringArray in element %d, having value %s.\n", str, elmntNo, stringArray[elmntNo]);
+         }
+         else
+         {
+            printf("\n%s is not present in stringArray.\n", str);
+         }
+         break;
+      }
+      case 3:
+      {
+         int elmntNo;
+         char str[10];
+         printf("Enter the name of the programing language you want to change:\n");
+         scanf("%s", str);
+         int n = search(stringArray, str, &elmntNo);
+         if (n == 0)
+         {
+            printf("\n%s is present in stringArray in element %d.\n", str, elmntNo);
+            char new[31];
+            printf("Enter the new name:\n");
+            scanf("%s", new);
+
+            char *(*ptr)[] = &stringArray;
+            (*ptr)[elmntNo] = new;
+
+            //strcat(stringArray[elmntNo], x);
+            // printf("%s\n", new);
+
+            printArray(stringArray);
+         }
+         else
+         {
+            printf("\n%s is not present in stringArray.\n", str);
+         }
+         break;
+      }
+      case 4:
+      {
+         exit = 1;
+         break;
+      }
+      default:
+         printf("wrong Input\n");
+      }
    }
-   else
-   {
-      printf("\n%s is not present in stringArray.\n", str);
-   }
+
+   return 0;
+}
+
+int input()
+{
+   int number;
+   scanf("%d", &number);
+   return (number);
+}
+
+void output(float number)
+{
+   printf("%f", number);
 }
 
 // search function, which takes in a pointer array to string and an a string
