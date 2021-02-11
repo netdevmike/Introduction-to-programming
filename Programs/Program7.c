@@ -5,7 +5,7 @@
 
 // prototype of the search function
 int search(char *stringArray[], char str[7], int *elemententNo); // prototype of search function
-int printArray(char *stringArray[]);                             // prototype of the printArray function                                 // prototype of the pintInfo
+int printArray(char *stringArray[]);                             // prototype of the printArray function
 int input();                                                     // prototype for input function
 
 // main function
