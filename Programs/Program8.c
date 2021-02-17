@@ -35,7 +35,7 @@ int main()
 
    unsigned int choice; // user's choice
    // enable user to specify action
-   while ((choice = enterChoice()) != 7)
+   while ((choice = enterChoice()) != 5)
    {
       switch (choice)
       {
@@ -54,15 +54,6 @@ int main()
       // update record
       case 4:
          updateRecords(user);
-         break;
-      // create record
-      case 5:
-         break;
-      // delete existing record
-      case 6:
-         break;
-      case 7:
-         return 0;
          break;
       // display message if user does not select valid choice
       default:
@@ -83,9 +74,7 @@ unsigned int enterChoice(void)
                 "2 - Search account data\n"
                 "3 - Total Salaries\n"
                 "4 - update an account\n"
-                "5 - add a new account\n"
-                "6 - delete an account\n"
-                "7 - end program\n? ");
+                "5 - end program\n? ");
    int number;           // initialize int number
    scanf("%d", &number); // reads input and stores it
    return (number);      // returns user input stored at number
