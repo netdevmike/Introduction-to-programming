@@ -1,9 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
+#include <stdio.h>  // preproccesser directive to include contents of file stdio.h
+#include <stdlib.h> // preproccesser directive to include contents of file stdlib.h
+#include <time.h>   // preproccesser directive to include contents of file time.h
+#include <string.h> // preproccesser directive to include contents of file string.h
 
-#define CLIENTS 10
+#define CLIENTS 10 // maximum number of clients
 
 // clientData structure definition
 typedef struct client
@@ -15,14 +15,13 @@ typedef struct client
 } Client;                            // new type name for struct client
 
 // prototypes
-unsigned int enterChoice(void);
-void printData(Client *cPtr);
-void searchData(Client *cPtr);
-void totalSalaries(Client *cPtr);
-void updateRecords(Client *cPtr);
+unsigned int enterChoice(void);   // prototype for choice function
+void printData(Client *cPtr);     // prototype for print user data function
+void searchData(Client *cPtr);    // prototype for search user data function
+void totalSalaries(Client *cPtr); // prototype for total salariesfunction
+void updateRecords(Client *cPtr); // prototype for update user data function
 
-// char *wLastName, char *wFistName, double *wSalary, int *wAge
-
+// main function
 int main()
 {
    Client user[CLIENTS] = {
@@ -33,9 +32,9 @@ int main()
        {1762, "Davis", "Mike", 22.15, 31}      // user5 default value
    };
 
-   unsigned int choice; // user's choice
+   unsigned int choice; // user choice int value
    // enable user to specify action
-   while ((choice = enterChoice()) != 5)
+   while ((choice = enterChoice()) != 5) // enter choice function, if 5 end program
    {
       switch (choice)
       {
@@ -57,7 +56,7 @@ int main()
          break;
       // display message if user does not select valid choice
       default:
-         puts("Incorrect choice");
+         printf("Incorrect choice");
          break;
       }
    }
@@ -88,11 +87,13 @@ void printData(Client *cPtr)
    {
       if (cPtr[i].id != 0)
       {
+         // print data if user id is present
          printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
       }
    }
 }
 
+// search all user data
 void searchData(Client *cPtr)
 {
    // display available options
@@ -106,8 +107,8 @@ void searchData(Client *cPtr)
    int number;           // initialize int number
    scanf("%d", &number); // reads input and stores it
    unsigned int choice;  // user's choice
-   int k, i;
-   char lname[15];
+   int k, i;             // initialize int k & i
+   char lname[15];       // initialize char lname
 
    while ((choice = number) != 6)
    {
@@ -116,94 +117,106 @@ void searchData(Client *cPtr)
       // Search for client based on ID number
       case 1:
          printf("\nEnter client ID number to search\n");
-         scanf("%i", &k);
+         scanf("%i", &k); // assign user input to k
+         // loop through cPtr
          for (i = 0; i < CLIENTS; i++)
          {
-            if (k == cPtr[i].id)
+            if (k == cPtr[i].id) // check if ID input from user is present
             {
                break;
             }
          }
-         if (i < CLIENTS)
+         if (i < CLIENTS) // i should be less than number of clients of user input was present
          {
+            // print client data
             printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
-            main();
+            return;
          }
          else
          {
+            // if user ID input not present
             printf("\nemployee not found\n");
-            main();
+            return;
          }
          break;
       // search for client based on last name
       case 2:
          printf("\nEnter employee last name to search\n");
-         scanf("%s", lname);
-         printf("%s", lname);
+         scanf("%s", lname); // assign user input to lname
+         // loop through cPtr
          for (i = 0; i < CLIENTS; i++)
          {
-            if (strcmp(lname, cPtr[i].lastName) == 0)
+            if (strcmp(lname, cPtr[i].lastName) == 0) // check if user input is present
             {
                break;
             }
          }
-         if (i < CLIENTS)
+         if (i < CLIENTS) // i should be less than number of clients if user input was present
          {
+            // print client data
             printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
-            main();
+            return;
          }
          else
          {
+            // if user last name input not present
             printf("\nemployee not found\n");
-            main();
+            return;
          }
          break;
       // search for client based on first name
       case 3:
          printf("\nEnter employee last name to search\n");
-         scanf("%s", lname);
+         scanf("%s", lname); // assign user input to lname
+         // loop through cPtr
          for (i = 0; i < CLIENTS; i++)
          {
-            if (strcmp(lname, cPtr[i].firstName) == 0)
+            if (strcmp(lname, cPtr[i].firstName) == 0) // check if user input is present
             {
                break;
             }
          }
-         if (i < CLIENTS)
+         if (i < CLIENTS) // i should be less than number of clients if user input was present
          {
+            // print user data
             printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
-            main();
+            return;
          }
          else
          {
+            // if user input last name input not present
             printf("\nemployee not found\n");
-            main();
+            return;
          }
          break;
-      // search for client based on salary
+      // search for client based on age
       case 4:
          printf("\nEnter client age to search\n");
-         scanf("%i", &k);
+         scanf("%i", &k); // assign user input to k
+         // loop through cPtr
          for (i = 0; i < CLIENTS; i++)
          {
-            if (k == cPtr[i].age)
+            if (k == cPtr[i].age) // check if user input is present
             {
                break;
             }
          }
-         if (i < CLIENTS)
+         if (i < CLIENTS) // i should be less than number of clients if user input was present
          {
+            // print user data
             printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
-            main();
+            return;
          }
          else
          {
+            // if user input age not present
             printf("\nemployee not found\n");
-            main();
+            return;
          }
          break;
       case 5:
-         main();
+         // return to main function
+         return;
          break;
       // display message if user does not select valid choice
       default:
@@ -213,49 +226,53 @@ void searchData(Client *cPtr)
    }
 }
 
+// total all client salaries
 void totalSalaries(Client *cPtr)
 {
-   double total = 0;
+   double total = 0; // initialize double total
    // loop through cPtr
    for (size_t i = 0; i < CLIENTS; ++i)
    {
-      if (cPtr[i].id != 0)
+      if (cPtr[i].id != 0) // if client exists
       {
-         total += cPtr[i].salary;
+         total += cPtr[i].salary; // add salary to total
       }
    }
 
-   printf("%.2lf\n", total);
+   printf("%.2lf\n", total); // print total salary of all clients
 }
 
+// update client records
 void updateRecords(Client *cPtr)
 {
-   int number;          // initialize int number
+   int number, k, i;    // initialize int number k and i
    unsigned int choice; // user's choice
-   int k, i;
-   char name[15];
-   double m;
+   char name[15];       // initialize name char
+   double m;            // initialize m double
 
    printf("\nInput the ID number of the user you would like to update\n");
-   scanf("%i", &k);
+   scanf("%i", &k); // assign user input to k
+   // loop through cPtr
    for (i = 0; i < CLIENTS; i++)
    {
-      if (k == cPtr[i].id)
+      if (k == cPtr[i].id) // if id from user input is present
       {
          break;
       }
    }
-   if (i < CLIENTS)
+   if (i < CLIENTS) // i should be less than number of clients if user input was present
    {
+      // print client data
       printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
 
-      // display available options
+      // display available options to update client data
       printf("%s", "\nWhat variable would you like to update for this user?\n"
                    "1 - Last Name\n"
                    "2 - First Name\n"
                    "3 - Salary\n"
                    "4 - Age\n"
-                   "5 - return to main menu\n");
+                   "5 - return to main menu\n"
+                   "6 - end the program\n");
       scanf("%d", &number); // reads input and stores it
 
       while ((choice = number) != 6)
@@ -265,44 +282,58 @@ void updateRecords(Client *cPtr)
          // case to update client last name
          case 1:
             printf("\nCurrent last name of client %i is %s, what would you like the new last name to be?\n", cPtr[i].id, cPtr[i].lastName);
-            scanf("%s", name);
-            strcpy(cPtr[i].lastName, name);
+            scanf("%s", name);              // assign user input to name
+            strcpy(cPtr[i].lastName, name); // assign name to lastName of client
 
+            // print updated client file
             printf("\nupdated client file:\n");
             printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
 
+            // return to main
+            return;
             break;
          // case to update client first name
          case 2:
             printf("\nCurrent first name of client %i is %s, what would you like the new first name to be?\n", cPtr[i].id, cPtr[i].firstName);
-            scanf("%s", name);
-            strcpy(cPtr[i].firstName, name);
+            scanf("%s", name);               // assign user input to name
+            strcpy(cPtr[i].firstName, name); // assign name to firstName of client
 
+            // print updated client file
             printf("\nupdated client file:\n");
             printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
 
+            // return to main
+            return;
             break;
          // case to update client salary
          case 3:
             printf("\nCurrent salary of client %i is %lf, what would you like the new salary to be?\n", cPtr[i].id, cPtr[i].salary);
-            scanf("%lf", &m);
-            cPtr[i].salary = m;
+            scanf("%lf", &m);   // assign user input to m
+            cPtr[i].salary = m; // assign m to salary of client
 
+            // print updated client file
             printf("\nupdated client file:\n");
             printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
+
+            // return to main
+            return;
             break;
          // case to update client age
          case 4:
             printf("\nCurrent age of client %i is %i, what would you like the new age to be?\n", cPtr[i].id, cPtr[i].age);
-            scanf("%i", &k);
-            cPtr[i].age = k;
+            scanf("%i", &k); // assign user input to k
+            cPtr[i].age = k; // assign k to age of client
 
+            // print updated client file
             printf("\nupdated client file:\n");
             printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
 
+            // return to main
+            return;
             break;
          case 5:
-            main();
+            // return to main
+            return;
             break;
          }
       }
@@ -315,5 +346,10 @@ void updateRecords(Client *cPtr)
 
 /*
 Resources:
+Deitel, Paul J., and Harvey M. Deitel. C: How to Program. Pearson, 2016. 
+https://beginnersbook.com/2014/01/c-structures-examples/
+https://www.programiz.com/c-programming/c-structures
+https://www.geeksforgeeks.org/structures-c/
 https://overiq.com/c-programming-101/typedef-statement-in-c/
+fig 10.03.c and fig 11.15.c
 */
