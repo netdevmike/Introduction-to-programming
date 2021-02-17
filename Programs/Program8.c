@@ -28,7 +28,7 @@ int main()
        {1275, "Hander", "Jack", 20.00, 38},    // user1 default value
        {9098, "Smith", "Ann", 25.22, 45},      // user2 default value
        {6731, "Webber", "Susanne", 18.55, 21}, // user3 default value
-       {0176, "West", "Bill", 30.18, 34},      // user4 default value
+       {8755, "West", "Bill", 30.18, 34},      // user4 default value
        {1762, "Davis", "Mike", 22.15, 31}      // user5 default value
    };
 
@@ -135,13 +135,13 @@ void searchData(Client *cPtr)
          else
          {
             // if user ID input not present
-            printf("\nemployee not found\n");
+            printf("\nClient not found\n");
             return;
          }
          break;
       // search for client based on last name
       case 2:
-         printf("\nEnter employee last name to search\n");
+         printf("\nEnter client last name to search\n");
          scanf("%s", lname); // assign user input to lname
          // loop through cPtr
          for (i = 0; i < CLIENTS; i++)
@@ -160,13 +160,13 @@ void searchData(Client *cPtr)
          else
          {
             // if user last name input not present
-            printf("\nemployee not found\n");
+            printf("\nClient not found\n");
             return;
          }
          break;
       // search for client based on first name
       case 3:
-         printf("\nEnter employee last name to search\n");
+         printf("\nEnter client last name to search\n");
          scanf("%s", lname); // assign user input to lname
          // loop through cPtr
          for (i = 0; i < CLIENTS; i++)
@@ -185,7 +185,7 @@ void searchData(Client *cPtr)
          else
          {
             // if user input last name input not present
-            printf("\nemployee not found\n");
+            printf("\nClient not found\n");
             return;
          }
          break;
@@ -210,7 +210,7 @@ void searchData(Client *cPtr)
          else
          {
             // if user input age not present
-            printf("\nemployee not found\n");
+            printf("\nClient not found\n");
             return;
          }
          break;
@@ -340,7 +340,7 @@ void updateRecords(Client *cPtr)
    }
    else
    {
-      printf("\nemployee not found\n");
+      printf("\nClient not found\n");
    }
 }
 

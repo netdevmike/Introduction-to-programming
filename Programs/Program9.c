@@ -8,7 +8,7 @@
 // clientData structure definition
 typedef struct client
 {
-   const int id;                     // account id number
+   int id;                           // account id number
    char lastName[15], firstName[10]; // account last and first name
    double salary;                    // account salary
    int age;                          // account age
@@ -20,6 +20,8 @@ void printData(Client *cPtr);     // prototype for print user data function
 void searchData(Client *cPtr);    // prototype for search user data function
 void totalSalaries(Client *cPtr); // prototype for total salariesfunction
 void updateRecords(Client *cPtr); // prototype for update user data function
+void newRecord(Client *cPtr);     // prototype for add new user record
+void deleteRecord(Client *cPtr);  // prototype for update user delete function
 
 // main function
 int main()
@@ -28,13 +30,14 @@ int main()
        {1275, "Hander", "Jack", 20.00, 38},    // user1 default value
        {9098, "Smith", "Ann", 25.22, 45},      // user2 default value
        {6731, "Webber", "Susanne", 18.55, 21}, // user3 default value
-       {0176, "West", "Bill", 30.18, 34},      // user4 default value
+       {8755, "West", "Bill", 30.18, 34},      // user4 default value
        {1762, "Davis", "Mike", 22.15, 31}      // user5 default value
    };
 
+   printf("%s", user[1].firstName);
    unsigned int choice; // user choice int value
    // enable user to specify action
-   while ((choice = enterChoice()) != 5) // enter choice function, if 5 end program
+   while ((choice = enterChoice()) != 7) // enter choice function, if 7 end program
    {
       switch (choice)
       {
@@ -53,6 +56,14 @@ int main()
       // update record
       case 4:
          updateRecords(user);
+         break;
+      // create record
+      case 5:
+         newRecord(user);
+         break;
+      // delete existing record
+      case 6:
+         deleteRecord(user);
          break;
       // display message if user does not select valid choice
       default:
@@ -73,7 +84,9 @@ unsigned int enterChoice(void)
                 "2 - Search account data\n"
                 "3 - Total Salaries\n"
                 "4 - update an account\n"
-                "5 - end program\n? ");
+                "5 - add a new account\n"
+                "6 - delete an account\n"
+                "7 - end program\n? ");
    int number;           // initialize int number
    scanf("%d", &number); // reads input and stores it
    return (number);      // returns user input stored at number
@@ -135,13 +148,13 @@ void searchData(Client *cPtr)
          else
          {
             // if user ID input not present
-            printf("\nemployee not found\n");
+            printf("\nClient not found\n");
             return;
          }
          break;
       // search for client based on last name
       case 2:
-         printf("\nEnter employee last name to search\n");
+         printf("\nEnter client last name to search\n");
          scanf("%s", lname); // assign user input to lname
          // loop through cPtr
          for (i = 0; i < CLIENTS; i++)
@@ -160,13 +173,13 @@ void searchData(Client *cPtr)
          else
          {
             // if user last name input not present
-            printf("\nemployee not found\n");
+            printf("\nClient not found\n");
             return;
          }
          break;
       // search for client based on first name
       case 3:
-         printf("\nEnter employee last name to search\n");
+         printf("\nEnter client last name to search\n");
          scanf("%s", lname); // assign user input to lname
          // loop through cPtr
          for (i = 0; i < CLIENTS; i++)
@@ -185,7 +198,7 @@ void searchData(Client *cPtr)
          else
          {
             // if user input last name input not present
-            printf("\nemployee not found\n");
+            printf("\nClient not found\n");
             return;
          }
          break;
@@ -210,7 +223,7 @@ void searchData(Client *cPtr)
          else
          {
             // if user input age not present
-            printf("\nemployee not found\n");
+            printf("\nClient not found\n");
             return;
          }
          break;
@@ -340,7 +353,95 @@ void updateRecords(Client *cPtr)
    }
    else
    {
-      printf("\nemployee not found\n");
+      printf("\nClient not found\n");
+   }
+}
+
+// add new client record
+void newRecord(Client *cPtr)
+{
+   int number, k, i;    // initialize int number k and i
+   unsigned int choice; // user's choice
+   char name[15];       // initialize name char
+   double m;            // initialize m double
+
+   printf("\nInput the ID number of the new client\n");
+   scanf("%i", &k); // assign user input to k
+
+   // loop through cPtr
+   for (i = 0; i < CLIENTS; i++)
+   {
+      if (k == cPtr[i].id) // if id present
+      {
+         printf("\nClient already exists\n");
+         return;
+      }
+      else if (cPtr[i].id == 0) // if id not present
+      {
+         break;
+      }
+   }
+   if (cPtr[i].id == 0) // if id not present
+   {
+      cPtr[i].id = k; // assign new id
+      printf("\nEnter last name for client %i:\n", cPtr[i].id);
+      scanf("%s", name);              // assign user input to name
+      strcpy(cPtr[i].lastName, name); // assign name to lastName of client
+
+      printf("\nEnter first name for client %i:\n", cPtr[i].id);
+      scanf("%s", name);               // assign user input to name
+      strcpy(cPtr[i].firstName, name); // assign name to firstName of client
+
+      printf("\nEnter current salary for client %i:\n", cPtr[i].id);
+      scanf("%lf", &m);   // assign user input to m
+      cPtr[i].salary = m; // assign m to salary of client
+
+      printf("\nEnter current age for client %i:\n", cPtr[i].id);
+      scanf("%i", &k); // assign user input to k
+      cPtr[i].age = k; // assign k to age of client
+
+      // print updated client file
+      printf("\nupdated client file:\n");
+      printf("\nUser Id: %i\nLast Name: %s\nFirst Name: %s\nSalary: %.2lf\nAge: %i\n ", cPtr[i].id, cPtr[i].lastName, cPtr[i].firstName, cPtr[i].salary, cPtr[i].age);
+
+      // return to main
+      return;
+   }
+   else // if there are already 10 clients
+   {
+      printf("\nThere may only be a maximum of 10 clients\n");
+      return;
+   }
+}
+
+// delete client record
+void deleteRecord(Client *cPtr)
+{
+   int number, k, i;    // initialize int number k and i
+   unsigned int choice; // user's choice
+   char name[15];       // initialize name char
+   double m;            // initialize m double
+
+   printf("\nInput the ID number of the user you would like to delete\n");
+   scanf("%i", &k); // assign user input to k
+   // loop through cPtr
+   for (i = 0; i < CLIENTS; i++)
+   {
+      if (k == cPtr[i].id) // if id from user input is present
+      {
+         printf("\nclient %i has now been deleted\n", cPtr[i].id);
+         cPtr[i].id = 0; // change id to 0
+         return;
+      }
+   }
+
+   if (cPtr[i].id == 0)
+   {
+      return;
+   }
+   else // if user input did not match any client id's
+   {
+      printf("\nClient not found\n");
    }
 }
 
