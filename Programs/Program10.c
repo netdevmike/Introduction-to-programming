@@ -16,6 +16,7 @@ char delete (ListNodePtr *sPtr, char value);
 void searchData(ListNodePtr *sPtr); // prototype for search user data function
 int isEmpty(ListNodePtr sPtr);
 void instructions(void);
+bool search(ListNodePtr *sPtr, int x);
 
 int main(void)
 {
@@ -192,4 +193,16 @@ void printList(ListNodePtr currentPtr)
 
       puts("NULL\n");
    }
+}
+
+/* Checks whether the value x is present in linked list */
+bool search(ListNodePtr, int x)
+{
+   while (ListNodePtr != NULL)
+   {
+      if (current->key == x)
+         return true;
+      current = current->next;
+   }
+   return false;
 }
