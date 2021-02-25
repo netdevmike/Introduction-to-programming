@@ -1,6 +1,7 @@
 #include <stdio.h>  // preproccesser directive to include contents of file stdio.h
 #include <stdlib.h> // preproccesser directive to include contents of file stdlib.h
 
+// listNode struct definition
 typedef struct listNode
 {
    char data;                // each listNode contains a character
@@ -10,14 +11,14 @@ typedef struct listNode
 typedef ListNode *ListNodePtr; // synonym for ListNode*
 
 // prototypes
-void insert(ListNodePtr *sPtr, char value);
-void printList(ListNodePtr currentPtr);
-char delete (ListNodePtr *sPtr, char value);
-void searchData(ListNodePtr *sPtr); // prototype for search user data function
-int isEmpty(ListNodePtr sPtr);
-void instructions(void);
-bool search(ListNodePtr *sPtr, int x);
+void insert(ListNodePtr *sPtr, char value);  // prototype for insert function
+char delete (ListNodePtr *sPtr, char value); // prototype for delete function
+char search(ListNodePtr *sPtr, char value);  // prototype for search function
+void printList(ListNodePtr currentPtr);      // prototype for print function
+int isEmpty(ListNodePtr sPtr);               // prototype for isempty function
+void instructions(void);                     // prototype for instructions function
 
+// main function
 int main(void)
 {
    ListNodePtr startPtr = NULL; // initially there are no nodes
@@ -29,7 +30,7 @@ int main(void)
    scanf("%u", &choice);
 
    // loop while user does not choose 3
-   while (choice != 3)
+   while (choice != 5)
    {
 
       switch (choice)
@@ -64,11 +65,32 @@ int main(void)
          }
 
          break;
-      case 3: // print list
-         printList(startPtr);
-         break;
-      case 4: // search list
+      case 3: // search list
+         // if list is not empty
+         if (!isEmpty(startPtr))
+         {
+            printf("%s", "Enter character to search for: ");
+            scanf("\n%c", &item);
 
+            // if character is found
+            if (search(&startPtr, item))
+            { // remove item
+               printf("%c found.\n", item);
+               printList(startPtr);
+            }
+            else
+            {
+               printf("%c not found.\n\n", item);
+            }
+         }
+         else
+         {
+            puts("List is empty.\n");
+         }
+
+         break;
+      case 4: // print list
+         printList(startPtr);
          break;
       default:
          puts("Invalid choice.\n");
@@ -89,7 +111,9 @@ void instructions(void)
    puts("Enter your choice:\n"
         "   1 to insert an element into the list.\n"
         "   2 to delete an element from the list.\n"
-        "   3 to end.");
+        "   3 to search for an element in the list.\n"
+        "   4 to print the list.\n"
+        "   5 to end.");
 }
 
 // insert a new value into the list in sorted order
@@ -196,13 +220,35 @@ void printList(ListNodePtr currentPtr)
 }
 
 /* Checks whether the value x is present in linked list */
-bool search(ListNodePtr, int x)
+// delete a list element
+char search(ListNodePtr *sPtr, char value)
 {
-   while (ListNodePtr != NULL)
+   // delete first node if a match is found
+   if (value == (*sPtr)->data)
    {
-      if (current->key == x)
-         return true;
-      current = current->next;
+      return value;
    }
-   return false;
+   else
+   {
+      ListNodePtr previousPtr = *sPtr;
+      ListNodePtr currentPtr = (*sPtr)->nextPtr;
+
+      // loop to find the correct location in the list
+      while (currentPtr != NULL && currentPtr->data != value)
+      {
+         previousPtr = currentPtr;         // walk to ...
+         currentPtr = currentPtr->nextPtr; // ... next node
+      }
+
+      // delete node at currentPtr
+      if (currentPtr != NULL)
+      {
+         ListNodePtr tempPtr = currentPtr;
+         previousPtr->nextPtr = currentPtr->nextPtr;
+         free(tempPtr);
+         return value;
+      }
+   }
+
+   return '\0';
 }
