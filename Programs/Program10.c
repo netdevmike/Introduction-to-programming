@@ -17,6 +17,7 @@ char delete (ListNodePtr *sPtr, char value); // prototype for delete function
 char search(ListNodePtr *sPtr, char value);  // prototype for search function
 void printList(ListNodePtr currentPtr);      // prototype for print function
 int isEmpty(ListNodePtr sPtr);               // prototype for isempty function
+void listSize(ListNodePtr currentPtr);       // prototype for listSize function
 
 // main function
 int main(void)
@@ -99,6 +100,8 @@ int main(void)
       printf("%s", "? ");   // prompt user for next input
       scanf("%u", &choice); // scan user input into int choice
    }
+
+   listSize(startPtr); // list size function
 
    puts("End of run."); // inform user of program end
 }
@@ -250,6 +253,30 @@ int isEmpty(ListNodePtr sPtr)
    return sPtr == NULL;
 }
 
+// print size of list
+void listSize(ListNodePtr currentPtr)
+{
+   int size = 0;  // declate size int variable
+   int total = 0; // declate total int variable
+   // if list is empty
+   if (isEmpty(currentPtr))
+   {
+      puts("List is empty.\n");
+   }
+   else
+   {
+      // while not the end of the list
+      while (currentPtr != NULL)
+      {
+         currentPtr = currentPtr->nextPtr;
+         size++; // increment size int variable to count number of nodes
+      }
+
+      total = size * sizeof(struct listNode); // multiple size(number of nodes) by sizeof node structure
+      // print number of nodes and size of linked list
+      printf("%i nodes in the linked list\nSize of linked list: %i bytes \n", size, total);
+   }
+}
 /*
 Resources:
 Deitel, Paul J., and Harvey M. Deitel. C: How to Program. Pearson, 2016. 
