@@ -2,67 +2,75 @@
 #include <stdlib.h> // preproccesser directive to include contents of file stdlib.h
 
 // self-referential structure
-struct stackNode
+typedef struct stackNode
 {
    int data;                  // define data as an int
    struct stackNode *nextPtr; // stackNode pointer
-};
+} StackNode;                  // synonym for struct stackNode
 
-typedef struct stackNode StackNode; // synonym for struct stackNode
-typedef StackNode *StackNodePtr;    // synonym for StackNode*
+typedef StackNode *StackNodePtr; // synonym for StackNode*
 
 // prototypes
-void push(StackNodePtr *topPtr, int info);
-int pop(StackNodePtr *topPtr);
-int isEmpty(StackNodePtr topPtr);
-void printStack(StackNodePtr currentPtr);
-void instructions(void);
+void push(StackNodePtr *topPtr, int info); // prototype for push function
+int pop(StackNodePtr *topPtr);             // prototype for pop function
+int isEmpty(StackNodePtr topPtr);          // prototype for isEmpty function
+void printStack(StackNodePtr currentPtr);  // prototype for printStack function
+void instructions(void);                   // prototype for instructions function
 
 // function main begins program execution
 int main(void)
 {
+   printf("__DATE__ = %s\n", __DATE__); // print predefined date value macro
+   printf("__TIME__ = %s\n", __TIME__); // print predefined time value macro
+   printf("\n");                        // add space
+
    StackNodePtr stackPtr = NULL; // points to stack top
    int value;                    // int input by user
 
    instructions(); // display the menu
    printf("%s", "? ");
-   unsigned int choice; // user's menu choice
-   scanf("%u", &choice);
+   unsigned int choice;  // user's choice
+   scanf("%u", &choice); // scan user input into unsigned int choice
 
-   // while user does not enter 3
-   while (choice != 3)
+   // while user does not enter 4
+   while (choice != 4)
    {
 
       switch (choice)
       {
       // push value onto stack
       case 1:
-         printf("%s", "Enter an integer: ");
-         scanf("%d", &value);
-         push(&stackPtr, value);
-         printStack(stackPtr);
+         printf("%s", "Enter an integer: "); //prompt user for input
+         scanf("%d", &value);                // scan user input into int value
+         push(&stackPtr, value);             // push value into stackPtr
+         printStack(stackPtr);               // print stackPtr using printStack function
          break;
       // pop value off stack
       case 2:
          // if stack is not empty
          if (!isEmpty(stackPtr))
          {
-            printf("The popped value is %d.\n", pop(&stackPtr));
+            printf("The popped value is %d.\n", pop(&stackPtr)); // pop value off stack using pop function
          }
 
-         printStack(stackPtr);
+         printStack(stackPtr); // print stackPtr using printStack function
          break;
+      // print stack
+      case 3:
+         printStack(stackPtr); // print stackPtr using printStack function
+         break;
+      // default case
       default:
-         puts("Invalid choice.\n");
-         instructions();
+         puts("Invalid choice.\n"); // inform user of invalid choice
+         instructions();            // instructions function
          break;
       } // end switch
 
-      printf("%s", "? ");
-      scanf("%u", &choice);
+      printf("%s", "? ");   // prompt user for next input
+      scanf("%u", &choice); // scan user input into int choice
    }
 
-   puts("End of run.");
+   puts("End of run."); // inform user of program end
 }
 
 // display program instructions to user
@@ -71,20 +79,21 @@ void instructions(void)
    puts("Enter choice:\n"
         "1 to push a value on the stack\n"
         "2 to pop a value off the stack\n"
-        "3 to end program");
+        "3 to print the stack\n"
+        "4 to end program");
 }
 
 // insert a node at the stack top
 void push(StackNodePtr *topPtr, int info)
 {
-   StackNodePtr newPtr = malloc(sizeof(StackNode));
+   StackNodePtr newPtr = malloc(sizeof(StackNode)); // create node
 
    // insert the node at stack top
    if (newPtr != NULL)
-   {
-      newPtr->data = info;
-      newPtr->nextPtr = *topPtr;
-      *topPtr = newPtr;
+   {                             // space available
+      newPtr->data = info;       // place value in node
+      newPtr->nextPtr = *topPtr; // walk to ...
+      *topPtr = newPtr;          // ... next node
    }
    else
    { // no space available
@@ -134,11 +143,5 @@ int isEmpty(StackNodePtr topPtr)
 /*
 Resources:
 Deitel, Paul J., and Harvey M. Deitel. C: How to Program. Pearson, 2016. 
-fig 12.03.c and fig 12.13.c
-Search an element in a Linked List (Iterative and Recursive):
-https://www.geeksforgeeks.org/search-an-element-in-a-linked-list-iterative-and-recursive/
-C program to search an element in linked list:
-https://codeforwin.org/2018/05/c-program-to-search-an-element-in-linked-list.html
-Linked List | Set 1 (Introduction)
-https://www.geeksforgeeks.org/linked-list-set-1-introduction/
+fig 12.08.c and ex 13.02.c
 */
