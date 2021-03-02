@@ -19,6 +19,7 @@ int isEmpty(QueueNodePtr headPtr);
 char dequeue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr);
 void enqueue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr, char value);
 void instructions(void);
+char peek(QueueNodePtr *headPtr);
 
 // function main begins program execution
 int main(void)
@@ -33,7 +34,7 @@ int main(void)
    scanf("%u", &choice);
 
    // while user does not enter 3
-   while (choice != 3)
+   while (choice != 4)
    {
 
       switch (choice)
@@ -55,6 +56,10 @@ int main(void)
          }
 
          printQueue(headPtr);
+         break;
+      // peek
+      case 3:
+         peek(&headPtr);
          break;
       default:
          puts("Invalid choice.\n");
@@ -150,4 +155,13 @@ void printQueue(QueueNodePtr currentPtr)
 
       puts("NULL\n");
    }
+}
+
+// peek
+char peek(QueueNodePtr *headPtr)
+{
+   char value = (*headPtr)->data;
+   printf("A peek at the queue shows %c\n", (*headPtr)->data);
+
+   return value;
 }
