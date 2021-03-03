@@ -34,7 +34,7 @@ int main(void)
    scanf("%u", &choice);
 
    // while user does not enter 3
-   while (choice != 4)
+   while (choice != 5)
    {
 
       switch (choice)
@@ -61,6 +61,10 @@ int main(void)
       case 3:
          peek(&headPtr);
          break;
+      // print
+      case 4:
+         printQueue(headPtr);
+         break;
       default:
          puts("Invalid choice.\n");
          instructions();
@@ -80,7 +84,9 @@ void instructions(void)
    printf("Enter your choice:\n"
           "   1 to add an item to the queue\n"
           "   2 to remove an item from the queue\n"
-          "   3 to end\n");
+          "   3 to peek at the queue\n"
+          "   4 to print at the queue\n"
+          "   5 to end\n");
 }
 
 // insert a node at queue tail
