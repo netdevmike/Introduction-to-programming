@@ -23,6 +23,10 @@ char peek(QueueNodePtr *headPtr);
 // function main begins program execution
 int main(void)
 {
+   printf("__DATE__ = %s\n", __DATE__); // print predefined date value macro
+   printf("__TIME__ = %s\n", __TIME__); // print predefined time value macro
+   printf("\n");
+
    QueueNodePtr headPtr = NULL; // initialize headPtr
    QueueNodePtr tailPtr = NULL; // initialize tailPtr
    char item;                   // char input by user
