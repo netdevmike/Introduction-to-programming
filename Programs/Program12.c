@@ -1,5 +1,4 @@
-// Fig. 12.13: fig12_13.c
-// Operating and maintaining a queue
+//preprocessor directives
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -171,3 +170,13 @@ char peek(QueueNodePtr *headPtr)
 
    return value;
 }
+
+/*
+Resources:
+Deitel, Paul J., and Harvey M. Deitel. C: How to Program. Pearson, 2016. 
+fig 12.13.c
+Queue | Set 1 (Introduction and Array Implementation)
+https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/
+Queue implementation using array, enqueue and dequeue in C
+https://codeforwin.org/2018/08/queue-implementation-using-array-in-c.html
+*/
