@@ -1,9 +1,11 @@
-//importing packages
+//preprocessor directives
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ARR1 10
-#define ARR2 10
+// defined values
+#define ARR1 10 // size of array 1
+#define ARR2 10 // size of array 2
+
 //main function
 int main()
 {
@@ -59,5 +61,4 @@ int main()
 Resources:
 How to dynamically allocate a 1D and 2D array in c.
 https://aticleworld.com/dynamically-allocate-2d-array-c/
-
 */
